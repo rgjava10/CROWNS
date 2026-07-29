@@ -1,5 +1,6 @@
 package com.rae.crowns.init.misc;
 
+import com.rae.crowns.content.nuclear.channels.cooled_fuel_assembly.CooledAssemblyBlockEntity;
 import com.rae.crowns.content.nuclear.fuel_assembly.AssemblyBlockEntity;
 import com.rae.crowns.content.nuclear.rod.*;
 import com.rae.crowns.content.thermodynamics.compressor.CompressorBlockEntity;
@@ -74,6 +75,12 @@ public class BlockEntityInit {
             .renderer(() -> HeatExchangerRenderer::new)
             .validBlock(BlockInit.HEAT_EXCHANGER)
             .register();
+
+
+    public static final BlockEntityEntry<CooledAssemblyBlockEntity> COOLED_FUEL_ASSEMBLY =
+            REGISTRATE.blockEntity("cooled_fuel_assembly", CooledAssemblyBlockEntity::new)
+                    .validBlock(BlockInit.COOLED_FUEL_ASSEMBLY)
+                    .register();
 
     public static void register() {
     }

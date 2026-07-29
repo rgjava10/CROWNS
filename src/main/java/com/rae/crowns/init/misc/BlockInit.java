@@ -1,5 +1,6 @@
 package com.rae.crowns.init.misc;
 
+import com.rae.crowns.content.nuclear.channels.cooled_fuel_assembly.CooledAssemblyBlock;
 import com.rae.crowns.content.nuclear.corium.SolidCoriumBlock;
 import com.rae.crowns.content.nuclear.fuel_assembly.AssemblyBlock;
 import com.rae.crowns.content.nuclear.rod.GraphiteSleeveBlock;
@@ -223,6 +224,32 @@ public class BlockInit {
             .initialProperties(SharedProperties::stone)
             .properties(p -> p.lightLevel((blockState) -> 9).strength(4, 4))
             .item()
+            .build()
+            .register();
+    public static final BlockEntry<CooledAssemblyBlock> COOLED_FUEL_ASSEMBLY= REGISTRATE
+            .block("cooled_fuel_assembly", CooledAssemblyBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .blockstate(
+                    (c, p) -> BlockStateGen.axisBlock(
+                            c, p, state ->
+                                    p.models().getExistingFile(p.modLoc("block/fuel_assembly/" +
+                                            state.getValue(CooledAssemblyBlock.ACTIVITY).getSerializedName()))
+                    )
+            )
+            .properties(p -> p.lightLevel((s) -> {
+                switch (s.getValue(CooledAssemblyBlock.ACTIVITY)) {
+                    case NONE -> {return 0;}
+                    case LOW -> {return 8;}
+                    case HIGH -> {return 15;}
+                }
+                return 0;
+            }))
+            .transform(displaySource(DisplaySourceInit.ACTIVITY))
+            .transform(displaySource(DisplaySourceInit.TEMPERATURE))
+            .transform(displaySource(DisplaySourceInit.FULL_STACK))
+            .item()
+            .model((c, p) ->
+                    p.withExistingParent(c.getName(), p.modLoc("block/fuel_assembly/none")))
             .build()
             .register();
 
