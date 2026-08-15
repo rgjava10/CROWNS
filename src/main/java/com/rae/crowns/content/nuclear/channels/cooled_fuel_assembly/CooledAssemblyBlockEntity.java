@@ -57,12 +57,14 @@ public class CooledAssemblyBlockEntity extends SmartBlockEntity implements IHave
     public @NotNull      HashMap<ResourceLocation, Double> radioactiveElements        = new HashMap<>(
             Map.of(
                     CROWNS.resource("u235"), 0.014 * 0.2,
-                    CROWNS.resource("u238"), 0.986 * 0.2,
-                    CROWNS.resource("p239"), 0.00 * 0.2
+                    CROWNS.resource("u238"), 0.986 * 0.2
             ));//for U235,U358 and Plutonium -> percentage of total mass
     protected            int                               syncCooldown;
     protected            boolean                           queuedSync;
     float  power    = 0;
+
+
+
     double fastAbsorptionChance;
     double slowAbsorptionChance;
     int    lastLazy = 0;
@@ -348,6 +350,13 @@ public class CooledAssemblyBlockEntity extends SmartBlockEntity implements IHave
         FormicApiLang.formatTemperature(temperature)
                 .style(ChatFormatting.DARK_RED)
                 .forGoggles(tooltip, 1);
+
+
+
+        tooltip.add(
+                Component.literal(String.format("%.2e", power))
+                        .withStyle(ChatFormatting.WHITE)
+        );
 
 
         tooltip.add(Component.literal("composition").setStyle(Style.EMPTY.withColor(ChatFormatting.GOLD)));

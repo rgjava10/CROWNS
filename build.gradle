@@ -165,6 +165,9 @@ dependencies {
     implementation "com.github.RealAntEngineer:FormicAPI:v${minecraft_version}-${formicapi_version}-dev"//jitpack
     implementation ("dev.simulated_team.simulated:simulated-neoforge-${minecraft_version}:${aeronautics_version}") {transitive = false}
 
+//    // Pipes'n Physics
+//    implementation("maven.modrinth:CuAT8bVS:j0MRoOFO")
+
     implementation("foundry.veil:veil-common-${minecraft_version}:${veil_version}") {
         exclude group: "maven.modrinth"
         exclude group: "com.tterrag.registrate"
